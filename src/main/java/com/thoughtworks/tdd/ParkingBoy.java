@@ -12,7 +12,7 @@ public class ParkingBoy {
         return ticket;
     }
 
-    public Car fetch(Ticket ticket) throws FakeTicketException, UsedTicketException, NoPositionException {
+    public Car fetch(Ticket ticket) throws FakeTicketException, UsedTicketException, NoPositionException, NoTicketException {
         return parkingLot.fetchCar(ticket);
     }
 }

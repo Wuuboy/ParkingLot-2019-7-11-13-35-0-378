@@ -10,18 +10,22 @@ public class ParkingLot {
         return parkingCarTicket;
     }
 
-    public Car fetchCar(Ticket ticket) throws FakeTicketException, UsedTicketException {
-        if (parkingCarTicket.containsKey(ticket)){
-            if (parkingCarTicket.get(ticket)!=null){
-                Car car =  parkingCarTicket.get(ticket);
+    public Car fetchCar(Ticket ticket) throws FakeTicketException, UsedTicketException, NoTicketException {
+        if (ticket!=null) {
+            if (parkingCarTicket.containsKey(ticket)) {
+                if (parkingCarTicket.get(ticket) != null) {
+                    Car car = parkingCarTicket.get(ticket);
 //                parkingCarTicket.get(ticket) = null;
-                parkingCarTicket.put(ticket,null);
-                return car;
-            }else {
-                throw new UsedTicketException();
+                    parkingCarTicket.put(ticket, null);
+                    return car;
+                } else {
+                    throw new UsedTicketException();
+                }
+            } else {
+                throw new FakeTicketException("Unrecognized parking ticket.");
             }
         }else {
-            throw new FakeTicketException("Unrecognized parking ticket.");
+            throw new NoTicketException("Please provide your parking ticket.");
         }
     }
 

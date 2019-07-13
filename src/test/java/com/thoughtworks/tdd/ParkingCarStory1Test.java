@@ -1,12 +1,13 @@
 package com.thoughtworks.tdd;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import static org.junit.Assert.*;
 
 import static junit.framework.TestCase.assertSame;
 import static org.fest.assertions.api.Assertions.assertThat;
 public class ParkingCarStory1Test {
     @Test
-    public void should_return_car_when_park_car_to_parking_lot_then_get_it_back() throws FakeTicketException, UsedTicketException, NoPositionException, CarHasBeenParkedException, NullCarException {
+    public void should_return_car_when_park_car_to_parking_lot_then_get_it_back() throws FakeTicketException, UsedTicketException, NoPositionException, CarHasBeenParkedException, NullCarException, NoTicketException {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -18,7 +19,7 @@ public class ParkingCarStory1Test {
         assertSame(car, fetchedCar);
     }
     @Test
-    public void should_mutiple_cars_when_park_to_parking_lot_then_get_them_back() throws FakeTicketException, UsedTicketException, NoPositionException, CarHasBeenParkedException, NullCarException {
+    public void should_mutiple_cars_when_park_to_parking_lot_then_get_them_back() throws FakeTicketException, UsedTicketException, NoPositionException, CarHasBeenParkedException, NullCarException, NoTicketException {
         //give
         Car firstCar = new Car();
         Car secondCar = new Car();
@@ -97,5 +98,17 @@ public class ParkingCarStory1Test {
         //when
         //then
         Assertions.assertThrows(NullCarException.class, ()->parkingBoy.park(null));
+    }
+
+    @Test
+    public void should_not_fetch_car_when_no_ticket() throws Exception, FakeTicketException {
+        //given
+        Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        //when
+        Ticket ticket = parkingBoy.park(car);
+        //then
+        Assertions.assertThrows(NoTicketException.class, ()->parkingBoy.fetch(null));
     }
 }
