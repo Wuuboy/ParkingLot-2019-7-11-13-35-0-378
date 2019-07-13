@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Assertions;
 
 import static junit.framework.TestCase.assertSame;
 import static org.fest.assertions.api.Assertions.assertThat;
-public class ParkingCarTest {
+public class ParkingCarStory1Test {
     @Test
-    public void should_return_car_when_park_car_to_parking_lot_then_get_it_back() throws FakeTicketException, UsedTicketException, NoPositionException, CarHasBeenParkedException {
+    public void should_return_car_when_park_car_to_parking_lot_then_get_it_back() throws FakeTicketException, UsedTicketException, NoPositionException, CarHasBeenParkedException, NullCarException {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -18,7 +18,7 @@ public class ParkingCarTest {
         assertSame(car, fetchedCar);
     }
     @Test
-    public void should_mutiple_cars_when_park_to_parking_lot_then_get_them_back() throws FakeTicketException, UsedTicketException, NoPositionException, CarHasBeenParkedException {
+    public void should_mutiple_cars_when_park_to_parking_lot_then_get_them_back() throws FakeTicketException, UsedTicketException, NoPositionException, CarHasBeenParkedException, NullCarException {
         //give
         Car firstCar = new Car();
         Car secondCar = new Car();
@@ -79,7 +79,7 @@ public class ParkingCarTest {
         Assertions.assertThrows(NoPositionException.class, ()->parkingBoy.park(car6));
     }
     @Test
-    public void should_not_park_car_when_car_has_been_parked() throws CarHasBeenParkedException, NoPositionException {
+    public void should_not_park_car_when_car_has_been_parked() throws CarHasBeenParkedException, NoPositionException, NullCarException {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -89,13 +89,13 @@ public class ParkingCarTest {
         //then
         Assertions.assertThrows(CarHasBeenParkedException.class, ()->parkingBoy.park(car));
     }
-//    @Test
-//    public void should_not_park_car_when_car_is_null() throws Exception {
-//        //given
-//        ParkingLot parkingLot = new ParkingLot();
-//        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-//        //when
-//        //then
-//        Assertions.assertThrows(CarIsNullException.class, ()->parkingBoy.park(null));
-//    }
+    @Test
+    public void should_not_park_car_when_car_is_null() throws Exception {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        //when
+        //then
+        Assertions.assertThrows(NullCarException.class, ()->parkingBoy.park(null));
+    }
 }
