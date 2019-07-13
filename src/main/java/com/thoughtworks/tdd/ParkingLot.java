@@ -4,37 +4,37 @@ import java.util.HashMap;
 
 public class ParkingLot {
     private HashMap<Ticket, Car> parkingCarTicket = new HashMap<>();
-    private static int parkingSpaceCount = 5;
+    private int parkingSpaceCount = 5;
 
     public HashMap<Ticket, Car> getParkingCarTicket() {
         return parkingCarTicket;
     }
 
-    public Car fetchCar(Ticket ticket) throws FakeTicketException, UsedTicketException, NoPositionException {
-        if (parkingSpaceCount<1){
-            throw new NoPositionException();
-        }else {
-            if (parkingCarTicket.containsKey(ticket)){
-                if (parkingCarTicket.get(ticket)!=null){
-                    Car car =  parkingCarTicket.get(ticket);
+    public Car fetchCar(Ticket ticket) throws FakeTicketException, UsedTicketException {
+        if (parkingCarTicket.containsKey(ticket)){
+            if (parkingCarTicket.get(ticket)!=null){
+                Car car =  parkingCarTicket.get(ticket);
 //                parkingCarTicket.get(ticket) = null;
-                    parkingCarTicket.put(ticket,null);
-                    parkingSpaceCount--;
-                    return car;
-                }else {
-                    throw new UsedTicketException();
-                }
+                parkingCarTicket.put(ticket,null);
+                return car;
             }else {
-                throw new FakeTicketException();
+                throw new UsedTicketException();
             }
+        }else {
+            throw new FakeTicketException();
         }
-
     }
 
-    public Ticket park(Car car) {
-        Ticket ticket = new Ticket();
-        parkingCarTicket.put(ticket, car);
-        return ticket;
+    public Ticket park(Car car) throws NoPositionException {
+        if (parkingSpaceCount>0){
+            Ticket ticket = new Ticket();
+            parkingCarTicket.put(ticket, car);
+            parkingSpaceCount --;
+            return ticket;
+        }else {
+            throw new NoPositionException();
+        }
+
     }
 
 }

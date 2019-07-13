@@ -7,12 +7,12 @@ public class ParkingBoy {
         this.parkingLot = parkingLot;
     }
 
-    public Ticket park(Car car) {
+    public Ticket park(Car car) throws NoPositionException {
         Ticket ticket = parkingLot.park(car);
         return ticket;
     }
 
-    public Car fetch(Ticket ticket) throws FakeTicketException, UsedTicketException {
+    public Car fetch(Ticket ticket) throws FakeTicketException, UsedTicketException, NoPositionException {
         return parkingLot.fetchCar(ticket);
     }
 }

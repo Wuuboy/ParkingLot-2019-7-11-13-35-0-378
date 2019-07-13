@@ -6,7 +6,7 @@ import static junit.framework.TestCase.assertSame;
 import static org.fest.assertions.api.Assertions.assertThat;
 public class ParkingCarTest {
     @Test
-    public void should_return_car_when_park_car_to_parking_lot_then_get_it_back() throws FakeTicketException, UsedTicketException {
+    public void should_return_car_when_park_car_to_parking_lot_then_get_it_back() throws FakeTicketException, UsedTicketException, NoPositionException {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -18,7 +18,7 @@ public class ParkingCarTest {
         assertSame(car, fetchedCar);
     }
     @Test
-    public void should_mutiple_cars_when_park_to_parking_lot_then_get_them_back() throws FakeTicketException, UsedTicketException {
+    public void should_mutiple_cars_when_park_to_parking_lot_then_get_them_back() throws FakeTicketException, UsedTicketException, NoPositionException {
         //give
         Car firstCar = new Car();
         Car secondCar = new Car();
@@ -57,8 +57,9 @@ public class ParkingCarTest {
         //then
         Assertions.assertThrows(UsedTicketException.class, ()->parkingBoy.fetch(ticket));
     }
+
     @Test
-    public void should_not_return_ticket_when_parkingLot_is_not_position() throws Exception {
+    public void should_not_rparking_car_when_parking_space_count_is_less_than_0() throws Exception {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
@@ -74,7 +75,6 @@ public class ParkingCarTest {
         parkingBoy.park(car3);
         parkingBoy.park(car4);
         parkingBoy.park(car5);
-        parkingBoy.park(car6);
         //then
         Assertions.assertThrows(NoPositionException.class, ()->parkingBoy.park(car6));
     }
