@@ -41,7 +41,7 @@ public class ParkingLot {
                     return ticket;
                 }
             } else {
-                throw new NoPositionException();
+                throw new NoPositionException("Not enough position.");
             }
         }else {
             throw  new NullCarException();
