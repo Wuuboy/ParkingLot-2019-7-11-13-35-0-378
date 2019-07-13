@@ -21,7 +21,7 @@ public class ParkingLot {
                 throw new UsedTicketException();
             }
         }else {
-            throw new FakeTicketException();
+            throw new FakeTicketException("Unrecognized parking ticket.");
         }
     }
 

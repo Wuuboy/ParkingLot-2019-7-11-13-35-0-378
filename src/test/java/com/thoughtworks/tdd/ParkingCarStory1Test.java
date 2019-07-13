@@ -43,7 +43,7 @@ public class ParkingCarStory1Test {
         //when
         parkingBoy.park(car);
         //then
-        Assertions.assertThrows(FakeTicketException.class, ()->parkingBoy.fetch(fakeTicket));
+        Assertions.assertThrows(FakeTicketException.class, ()->parkingBoy.fetch(fakeTicket),"Unrecognized parking ticket.");
     }
     @Test
     public void should_not_fetch_car_when_ticket_is_used() throws FakeTicketException, Exception {
@@ -55,7 +55,7 @@ public class ParkingCarStory1Test {
         Ticket ticket = parkingBoy.park(car);
         parkingBoy.fetch(ticket);
         //then
-        Assertions.assertThrows(UsedTicketException.class, ()->parkingBoy.fetch(ticket));
+        Assertions.assertThrows(UsedTicketException.class, ()->parkingBoy.fetch(ticket),"Unrecognized parking ticket.");
     }
 
     @Test
