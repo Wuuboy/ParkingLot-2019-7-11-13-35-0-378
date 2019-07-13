@@ -25,12 +25,16 @@ public class ParkingLot {
         }
     }
 
-    public Ticket park(Car car) throws NoPositionException {
+    public Ticket park(Car car) throws NoPositionException, CarHasBeenParkedException {
         if (parkingSpaceCount>0){
-            Ticket ticket = new Ticket();
-            parkingCarTicket.put(ticket, car);
-            parkingSpaceCount --;
-            return ticket;
+            if (parkingCarTicket.containsValue(car)){
+                throw new CarHasBeenParkedException();
+            }else {
+                Ticket ticket = new Ticket();
+                parkingCarTicket.put(ticket, car);
+                parkingSpaceCount --;
+                return ticket;
+            }
         }else {
             throw new NoPositionException();
         }
