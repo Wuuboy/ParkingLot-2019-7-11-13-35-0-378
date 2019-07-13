@@ -1,13 +1,22 @@
 package com.thoughtworks.tdd;
 
+import java.time.format.SignStyle;
 import java.util.HashMap;
 
 public class ParkingLot {
     private HashMap<Ticket, Car> parkingCarTicket = new HashMap<>();
     private int parkingSpaceCount = 5;
 
+    public int getParkingSpaceCount() {
+        return parkingSpaceCount;
+    }
+
     public HashMap<Ticket, Car> getParkingCarTicket() {
         return parkingCarTicket;
+    }
+
+    public String returnWarningMessage(String message){
+        return message;
     }
 
     public Car fetchCar(Ticket ticket) throws FakeTicketException, UsedTicketException, NoTicketException {

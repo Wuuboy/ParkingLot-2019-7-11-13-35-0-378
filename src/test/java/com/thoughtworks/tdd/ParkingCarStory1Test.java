@@ -1,6 +1,10 @@
 package com.thoughtworks.tdd;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 import static junit.framework.TestCase.assertSame;
@@ -35,7 +39,7 @@ public class ParkingCarStory1Test {
         assertSame(secondCar, fetchedSecondCar);
     }
     @Test
-    public void should_not_fetch_car_when_ticket_is_fake() throws Exception {
+    public void should_not_fetch_car_when_ticket_is_fake() throws Exception, FakeTicketException {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -79,6 +83,35 @@ public class ParkingCarStory1Test {
         //then
         Assertions.assertThrows(NoPositionException.class, ()->parkingBoy.park(car6));
     }
+
+    @Test
+    public void should_not_park_car_when_parking_space_count_is_less_than_0_with_two_parkinglots() throws Exception, FakeTicketException {
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Car car3 = new Car();
+        Car car4 = new Car();
+        Car car5 = new Car();
+        Car car6 = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        //when
+        parkingBoy.moreParkLots(car1);
+        parkingBoy.moreParkLots(car2);
+        parkingBoy.moreParkLots(car3);
+        parkingBoy.moreParkLots(car4);
+        parkingBoy.moreParkLots(car5);
+        Ticket ticket = parkingBoy.moreParkLots(car6);
+        //then
+        Car fetchedCar = parkingBoy.fetchWithMoreParkingplots(ticket);
+        //then
+        assertSame(car6, fetchedCar);
+//        Assertions.assertThrows(NoPositionException.class, ()->parkingBoy.park(car6));
+    }
     @Test
     public void should_not_park_car_when_car_has_been_parked() throws CarHasBeenParkedException, NoPositionException, NullCarException {
         //given
@@ -111,4 +144,6 @@ public class ParkingCarStory1Test {
         //then
         Assertions.assertThrows(NoTicketException.class, ()->parkingBoy.fetch(null));
     }
+
+
 }
