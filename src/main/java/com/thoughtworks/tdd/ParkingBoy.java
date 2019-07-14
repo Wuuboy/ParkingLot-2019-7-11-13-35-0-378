@@ -11,6 +11,9 @@ public class ParkingBoy {
         return ticketParkinglot;
     }
 
+    public ParkingBoy() {
+    }
+
     public ParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
@@ -35,7 +38,7 @@ public class ParkingBoy {
 //        exist problems
         return null;
     }
-    public Ticket smartPark(Car car) throws NoPositionException, CarHasBeenParkedException, NullCarException {
+    public ParkingLot smartPark(Car car) throws NoPositionException, CarHasBeenParkedException, NullCarException {
         int bigCapacity = parkingLots.get(0).getParkingSpaceCount();
         ParkingLot parkingLotMax = parkingLots.get(0);
         for (ParkingLot parkingLot:parkingLots) {
@@ -46,10 +49,10 @@ public class ParkingBoy {
         }
         Ticket ticket = parkingLotMax.park(car);
         ticketParkinglot.put(ticket,parkingLotMax);
-        return ticket;
+        return parkingLotMax;
     }
 
-    public Ticket superPark(Car car) throws NoPositionException, CarHasBeenParkedException, NullCarException {
+    public ParkingLot superPark(Car car) throws NoPositionException, CarHasBeenParkedException, NullCarException {
         int bigCapacity = parkingLots.get(0).getParkingSpaceCount()/5;
         ParkingLot parkingLotMax = parkingLots.get(0);
         for (ParkingLot parkingLot:parkingLots) {
@@ -60,7 +63,7 @@ public class ParkingBoy {
         }
         Ticket ticket = parkingLotMax.park(car);
         ticketParkinglot.put(ticket,parkingLotMax);
-        return ticket;
+        return parkingLotMax;
     }
 
     public Car fetchWithMoreParkingplots(Ticket ticket) throws FakeTicketException, UsedTicketException, NoPositionException, NoTicketException {

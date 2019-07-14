@@ -2,7 +2,6 @@ package com.thoughtworks.tdd;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -143,4 +142,51 @@ public class ParkingCarStory1Test {
         assertSame(car6, fetchedCar);
     }
 
+    @Test
+    public void should_not_park_car_when_parking_space_count_is_less_than_0_with_smart_parking_boy() throws Exception, FakeTicketException {
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        //set the bigger parking spaces
+        parkingLot2.setParkingSpaceCount(7);
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        //when
+        parkingBoy.moreParkLots(car1);
+        ParkingLot parkingLotMax = parkingBoy.smartPark(car2);
+        //then
+        assertSame(parkingLot2, parkingLotMax);
+    }
+    @Test
+    public void should_return_parkingboys_when_manager_add_parkingboy(){
+        //given
+        Manager manager = new Manager();
+        ParkingBoy parkingBoy =new ParkingBoy();
+        //when
+        //manager.addParkingboys(parkingBoy)
+        //then
+        assertSame(manager.getParkingBoys(),manager.addParkingboys(parkingBoy));
+    }
+
+    @Test
+    public void should_park_car_and_manage_mutiple_parkinglots() throws CarHasBeenParkedException, NullCarException, NoPositionException, FakeTicketException, UsedTicketException, NoTicketException {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot1 = new ParkingLot();
+        ArrayList<ParkingLot>parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy manager = new Manager(parkingLots);
+        Car car = new Car();
+        //when
+        Ticket ticket = manager.moreParkLots(car);
+        Car fetchedCar = manager.fetchWithMoreParkingplots(ticket);
+        //then
+        assertSame(((Manager) manager).getParkingLots(),((Manager) manager).addParkinglot(parkingLot));
+        assertSame(car,fetchedCar);
+    }
 }
