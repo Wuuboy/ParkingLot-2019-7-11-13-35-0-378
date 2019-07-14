@@ -161,6 +161,26 @@ public class ParkingCarStory1Test {
         //then
         assertSame(parkingLot2, parkingLotMax);
     }
+
+    @Test
+    public void should_not_park_car_when_parking_space_count_is_less_than_0_with_super_parking_boy() throws Exception, FakeTicketException {
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        //set the bigger parking spaces
+        parkingLot2.setParkingSpaceCount(7);
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        //when
+        parkingBoy.superPark(car1);
+        ParkingLot parkingLotMax = parkingBoy.superPark(car2);
+        //then
+        assertSame(parkingLot2, parkingLotMax);
+    }
     @Test
     public void should_return_parkingboys_when_manager_add_parkingboy(){
         //given
@@ -188,5 +208,23 @@ public class ParkingCarStory1Test {
         //then
         assertSame(((Manager) manager).getParkingLots(),((Manager) manager).addParkinglot(parkingLot));
         assertSame(car,fetchedCar);
+    }
+
+    @Test
+    public void should_return_worong_message_when_parkingboy_failed_parking_car() throws CarHasBeenParkedException, NullCarException, NoPositionException {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.setParkingSpaceCount(2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Manager manager = new Manager();
+        Car car = new Car();
+        Car car1 = new Car();
+        Car car2 = new Car();
+        //when
+        ArrayList<ParkingBoy> parkingBoys = manager.addParkingboys(parkingBoy);
+        parkingBoys.get(parkingBoys.size()-1).park(car);
+        parkingBoys.get(parkingBoys.size()-1).park(car1);
+        //then
+        Assertions.assertThrows(Exception.class,()->parkingBoys.get(parkingBoys.size()-1).park(car2));
     }
 }
