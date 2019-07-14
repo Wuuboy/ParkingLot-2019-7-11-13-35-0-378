@@ -3,11 +3,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.ArrayList;
-
-import static org.junit.Assert.*;
-
 import static junit.framework.TestCase.assertSame;
-import static org.fest.assertions.api.Assertions.assertThat;
 public class ParkingCarStory1Test {
     @Test
     public void should_return_car_when_park_car_to_parking_lot_then_get_it_back() throws FakeTicketException, UsedTicketException, NoPositionException, CarHasBeenParkedException, NullCarException, NoTicketException {
@@ -225,6 +221,7 @@ public class ParkingCarStory1Test {
         parkingBoys.get(parkingBoys.size()-1).park(car);
         parkingBoys.get(parkingBoys.size()-1).park(car1);
         //then
+        //exist confusing problems
         Assertions.assertThrows(Exception.class,()->parkingBoys.get(parkingBoys.size()-1).park(car2));
     }
 }
