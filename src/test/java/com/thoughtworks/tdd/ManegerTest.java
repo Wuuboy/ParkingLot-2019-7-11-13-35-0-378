@@ -46,12 +46,10 @@ public class ManegerTest {
         ParkingLot parkingLot = new ParkingLot();
         ParkingLot parkingLot1 = new ParkingLot();
         ParkingLot parkingLot2 = new ParkingLot();
-
         ArrayList<ParkingLot>parkingLots = new ArrayList<>();
         parkingLots.add(parkingLot);
         parkingLots.add(parkingLot1);
         ParkingBoy manager = new Manager(parkingLots);
-
         Car car = new Car();
         //when
         Ticket ticket = manager.moreParkLots(car);
