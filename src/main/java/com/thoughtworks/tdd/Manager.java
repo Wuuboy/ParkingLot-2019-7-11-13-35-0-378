@@ -2,7 +2,7 @@ package com.thoughtworks.tdd;
 
 import java.util.*;
 
-public class Manager extends ParkingBoy{
+public class Manager extends StandardParkingBoy{
     ArrayList<ParkingBoy> parkingBoys = new ArrayList<>();
     ArrayList<ParkingLot> parkingLots;
 

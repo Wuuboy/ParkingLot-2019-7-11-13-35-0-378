@@ -3,12 +3,12 @@ package com.thoughtworks.tdd;
 import java.util.List;
 
 public class StandardParkingBoy extends ParkingBoy {
-    public StandardParkingBoy(List<ParkingLot> parkingLots) {
-        super(parkingLots);
+
+    public StandardParkingBoy() {
     }
 
-    public StandardParkingBoy(ParkingLot parkingLot) {
-        super(parkingLot);
+    public StandardParkingBoy(List<ParkingLot> parkingLots) {
+        super(parkingLots);
     }
 
     @Override
