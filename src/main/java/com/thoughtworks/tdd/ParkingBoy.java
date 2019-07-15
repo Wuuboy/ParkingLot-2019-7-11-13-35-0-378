@@ -14,10 +14,10 @@ public class ParkingBoy {
     public ParkingBoy() {
     }
 
+
     public ParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
-
     public ParkingBoy(ParkingLot parkingLot) {
         this.parkingLot = parkingLot;
     }

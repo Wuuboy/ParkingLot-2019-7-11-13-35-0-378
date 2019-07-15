@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 
 import java.util.ArrayList;
 import static junit.framework.TestCase.assertSame;
-public class ParkingCarStory1Test {
+public class ParkingBoyTest {
     @Test
     public void should_return_car_when_park_car_to_parking_lot_then_get_it_back() throws FakeTicketException, UsedTicketException, NoPositionException, CarHasBeenParkedException, NullCarException, NoTicketException {
         //given
@@ -138,25 +138,7 @@ public class ParkingCarStory1Test {
         assertSame(car6, fetchedCar);
     }
 
-    @Test
-    public void park_car_with_smart_parking_boy() throws Exception, FakeTicketException {
-        //given
-        Car car1 = new Car();
-        Car car2 = new Car();
-        ParkingLot parkingLot = new ParkingLot();
-        ParkingLot parkingLot2 = new ParkingLot();
-        //set the bigger parking spaces
-        parkingLot2.setParkingSpaceCount(7);
-        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
-        parkingLots.add(parkingLot);
-        parkingLots.add(parkingLot2);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        //when
-        parkingBoy.moreParkLots(car1);
-        ParkingLot parkingLotMax = parkingBoy.smartPark(car2);
-        //then
-        assertSame(parkingLot2, parkingLotMax);
-    }
+
 
     @Test
     public void park_car_with_super_parking_boy() throws Exception, FakeTicketException {
