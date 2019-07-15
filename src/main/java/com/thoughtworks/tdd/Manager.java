@@ -1,5 +1,7 @@
 package com.thoughtworks.tdd;
 
+import com.thoughtworks.tdd.exceptions.*;
+
 import java.util.*;
 
 public class Manager extends StandardParkingBoy{

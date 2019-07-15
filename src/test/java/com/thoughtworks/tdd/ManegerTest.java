@@ -1,5 +1,6 @@
 package com.thoughtworks.tdd;
 
+import com.thoughtworks.tdd.exceptions.*;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -58,7 +59,7 @@ public class ManegerTest {
     }
 
     @Test
-    public void should_return_worong_message_when_parkingboy_failed_parking_car() throws CarHasBeenParkedException, NullCarException, NoPositionException {
+    public void should_return_wrong_message_when_parkingboy_failed_parking_car() throws CarHasBeenParkedException, NullCarException, NoPositionException {
         //given
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.setParkingSpaceCount(2);
@@ -72,7 +73,6 @@ public class ManegerTest {
         parkingBoys.get(parkingBoys.size()-1).park(car);
         parkingBoys.get(parkingBoys.size()-1).park(car1);
         //then
-        //exist confusing problems
-        Assertions.assertThrows(Exception.class,()->parkingBoys.get(parkingBoys.size()-1).park(car2));
+        Assertions.assertThrows(NoPositionException.class,()->parkingBoys.get(parkingBoys.size()-1).park(car2));
     }
 }

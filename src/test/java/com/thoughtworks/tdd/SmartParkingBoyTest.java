@@ -1,8 +1,8 @@
 package com.thoughtworks.tdd;
 
+import com.thoughtworks.tdd.exceptions.FakeTicketException;
 import org.junit.Test;
 
-import javax.rmi.ssl.SslRMIClientSocketFactory;
 import java.util.ArrayList;
 
 import static junit.framework.TestCase.assertSame;

@@ -1,5 +1,6 @@
 package com.thoughtworks.tdd;
 
+import com.thoughtworks.tdd.exceptions.FakeTicketException;
 import org.junit.Test;
 
 import java.util.ArrayList;
