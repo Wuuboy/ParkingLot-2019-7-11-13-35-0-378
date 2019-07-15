@@ -7,6 +7,10 @@ public class ParkingBoy {
     private List<ParkingLot> parkingLots;
     private Map<Ticket,ParkingLot> ticketParkinglot= new HashMap<>();
 
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
     public Map<Ticket, ParkingLot> getTicketParkinglot() {
         return ticketParkinglot;
     }

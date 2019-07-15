@@ -138,28 +138,6 @@ public class ParkingBoyTest {
         assertSame(car6, fetchedCar);
     }
 
-
-
-    @Test
-    public void park_car_with_super_parking_boy() throws Exception, FakeTicketException {
-        //given
-        Car car1 = new Car();
-        Car car2 = new Car();
-        ParkingLot parkingLot = new ParkingLot();
-        ParkingLot parkingLot2 = new ParkingLot();
-        //set the bigger parking spaces
-        //here exist problem
-        parkingLot2.setParkingSpaceCount(7);
-        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
-        parkingLots.add(parkingLot);
-        parkingLots.add(parkingLot2);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        //when
-        parkingBoy.superPark(car1);
-        ParkingLot parkingLotMax = parkingBoy.superPark(car2);
-        //then
-        assertSame(parkingLot2, parkingLotMax);
-    }
     @Test
     public void should_return_parkingboys_when_manager_add_parkingboy(){
         //given

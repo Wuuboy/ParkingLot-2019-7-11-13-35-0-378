@@ -2,17 +2,18 @@ package com.thoughtworks.tdd;
 
 import java.util.List;
 
-public class SmartParkingBoy extends ParkingBoy {
-    public SmartParkingBoy(List<ParkingLot> parkingLots) {
+public class SuperParkingBoy extends ParkingBoy {
+
+    public SuperParkingBoy(List<ParkingLot> parkingLots) {
         super(parkingLots);
     }
 
     @Override
     public Ticket park(Car car) throws NoPositionException, CarHasBeenParkedException, NullCarException {
-        int bigCapacity = this.getParkingLots().get(0).getParkingSpaceCount();
+        int bigCapacity = this.getParkingLots().get(0).getParkingSpaceCount()/5;
         ParkingLot parkingLotMax = this.getParkingLots().get(0);
         for (ParkingLot parkingLot:this.getParkingLots()) {
-            if (parkingLot.getParkingSpaceCount()>bigCapacity){
+            if (parkingLot.getParkingSpaceCount()/5>=bigCapacity){
                 bigCapacity = parkingLot.getParkingSpaceCount();
                 parkingLotMax = parkingLot;
             }
