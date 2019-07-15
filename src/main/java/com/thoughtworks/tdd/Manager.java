@@ -32,4 +32,23 @@ public class Manager extends ParkingBoy{
         return parkingLots;
     }
 
+    @Override
+    public Ticket park(Car car) throws NoPositionException, CarHasBeenParkedException, NullCarException {
+        return super.park(car);
+    }
+
+    @Override
+    public Car fetch(Ticket ticket) throws FakeTicketException, UsedTicketException, NoPositionException, NoTicketException {
+        return super.fetch(ticket);
+    }
+
+    public Ticket callParkingBoyToParkingCar(Car car, ParkingBoy parkingBoy) throws CarHasBeenParkedException, NullCarException, NoPositionException, FakeTicketException, UsedTicketException, NoTicketException {
+        Ticket ticket = parkingBoy.park(car);
+        return ticket;
+    }
+
+    public Car callParkingBoyToFetchCar(ParkingBoy parkingBoy,Ticket ticket) throws NoTicketException, FakeTicketException, UsedTicketException, NoPositionException {
+        Car fetchedCar = parkingBoy.fetch(ticket);
+        return fetchedCar;
+    }
 }

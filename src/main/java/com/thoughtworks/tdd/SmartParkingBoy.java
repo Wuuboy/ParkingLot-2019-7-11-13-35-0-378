@@ -3,8 +3,15 @@ package com.thoughtworks.tdd;
 import java.util.List;
 
 public class SmartParkingBoy extends ParkingBoy {
+    public SmartParkingBoy() {
+    }
+
     public SmartParkingBoy(List<ParkingLot> parkingLots) {
         super(parkingLots);
+    }
+
+    public SmartParkingBoy(ParkingLot parkingLot) {
+        super(parkingLot);
     }
 
     @Override
@@ -20,5 +27,11 @@ public class SmartParkingBoy extends ParkingBoy {
         Ticket ticket = parkingLotMax.park(car);
         this.getTicketParkinglot().put(ticket,parkingLotMax);
         return ticket;
+    }
+
+
+    @Override
+    public Car fetch(Ticket ticket) throws FakeTicketException, UsedTicketException, NoPositionException, NoTicketException {
+        return this.getTicketParkinglot().get(ticket).fetchCar(ticket);
     }
 }

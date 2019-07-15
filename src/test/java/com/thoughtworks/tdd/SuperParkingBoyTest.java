@@ -19,11 +19,11 @@ public class SuperParkingBoyTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(parkingLot);
         parkingLots.add(parkingLot2);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLots);
         //when
-        parkingBoy.superPark(car1);
-        parkingBoy.superPark(car2);
+        parkingBoy.park(car1);
+        parkingBoy.park(car2);
         //then
-        assertSame(parkingLot2.getParkingSpaceCount(), 6);
+        assertSame(parkingLot2.getParkingSpaceCount(), 5);
     }
 }

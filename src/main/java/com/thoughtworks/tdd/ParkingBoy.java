@@ -42,33 +42,6 @@ public class ParkingBoy {
 //        exist problems
         return null;
     }
-    public ParkingLot smartPark(Car car) throws NoPositionException, CarHasBeenParkedException, NullCarException {
-        int bigCapacity = parkingLots.get(0).getParkingSpaceCount();
-        ParkingLot parkingLotMax = parkingLots.get(0);
-        for (ParkingLot parkingLot:parkingLots) {
-            if (parkingLot.getParkingSpaceCount()>bigCapacity){
-                bigCapacity = parkingLot.getParkingSpaceCount();
-                parkingLotMax = parkingLot;
-            }
-        }
-        Ticket ticket = parkingLotMax.park(car);
-        ticketParkinglot.put(ticket,parkingLotMax);
-        return parkingLotMax;
-    }
-
-    public ParkingLot superPark(Car car) throws NoPositionException, CarHasBeenParkedException, NullCarException {
-        int bigCapacity = parkingLots.get(0).getParkingSpaceCount()/5;
-        ParkingLot parkingLotMax = parkingLots.get(0);
-        for (ParkingLot parkingLot:parkingLots) {
-            if (parkingLot.getParkingSpaceCount()/5>bigCapacity){
-                bigCapacity = parkingLot.getParkingSpaceCount();
-                parkingLotMax = parkingLot;
-            }
-        }
-        Ticket ticket = parkingLotMax.park(car);
-        ticketParkinglot.put(ticket,parkingLotMax);
-        return parkingLotMax;
-    }
 
     public Car fetchWithMoreParkingplots(Ticket ticket) throws FakeTicketException, UsedTicketException, NoPositionException, NoTicketException {
         return ticketParkinglot.get(ticket).fetchCar(ticket);

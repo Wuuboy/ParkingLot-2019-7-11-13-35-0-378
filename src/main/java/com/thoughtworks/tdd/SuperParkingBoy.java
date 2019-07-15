@@ -4,6 +4,9 @@ import java.util.List;
 
 public class SuperParkingBoy extends ParkingBoy {
 
+    public SuperParkingBoy() {
+    }
+
     public SuperParkingBoy(List<ParkingLot> parkingLots) {
         super(parkingLots);
     }
@@ -21,5 +24,10 @@ public class SuperParkingBoy extends ParkingBoy {
         Ticket ticket = parkingLotMax.park(car);
         this.getTicketParkinglot().put(ticket,parkingLotMax);
         return ticket;
+    }
+
+    @Override
+    public Car fetch(Ticket ticket) throws FakeTicketException, UsedTicketException, NoPositionException, NoTicketException {
+        return this.getTicketParkinglot().get(ticket).fetchCar(ticket);
     }
 }
